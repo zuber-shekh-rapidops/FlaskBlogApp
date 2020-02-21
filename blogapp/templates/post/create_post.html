@@ -1,0 +1,15 @@
+{%extends 'main/base.html'%}
+
+{%block main%}
+<section>
+    <h2>{{form_title}}</h2>
+    <form action="" method="POST">
+        {{form.hidden_tag()}}
+        {{form.title.label}}
+        {{form.title()}}
+        {{form.content.label}}
+        {{form.content()}}
+        {{form.submit()}}
+    </form>
+</section>
+{%endblock%}

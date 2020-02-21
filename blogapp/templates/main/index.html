@@ -1,0 +1,48 @@
+{%extends 'main/base.html'%}
+
+
+{%block main%}
+<section>
+    <h2>Welcome to blog app</h2>
+</section>
+<section>
+    <section>
+        <h3>if you an account then login</h3>
+        <a href="{{url_for('user.login')}}">login</a>
+    </section>
+    <section>
+        <h3>if you don't have an account then sign up</h3>
+        <a href="{{url_for('user.signup')}}">signup</a>
+    </section>
+</section>
+<section>
+    <h3>list of top 10 blogs</h3>
+    <ul>
+        <li><a href="#">blog 1</a></li>
+        <li><a href="#">blog 2</a></li>
+        <li><a href="#">blog 3</a></li>
+        <li><a href="#">blog 4</a></li>
+        <li><a href="#">blog 5</a></li>
+        <li><a href="#">blog 6</a></li>
+        <li><a href="#">blog 7</a></li>
+        <li><a href="#">blog 8</a></li>
+        <li><a href="#">blog 9</a></li>
+        <li><a href="#">blog 10</a></li>
+    </ul>
+</section>
+<section>
+    <h3>list of top 10 posts</h3>
+    <ul>
+        <li><a href="#">post 1</a></li>
+        <li><a href="#">post 2</a></li>
+        <li><a href="#">post 3</a></li>
+        <li><a href="#">post 4</a></li>
+        <li><a href="#">post 5</a></li>
+        <li><a href="#">post 6</a></li>
+        <li><a href="#">post 7</a></li>
+        <li><a href="#">post 8</a></li>
+        <li><a href="#">post 9</a></li>
+        <li><a href="#">post 10</a></li>
+    </ul>
+</section>
+{%endblock%}

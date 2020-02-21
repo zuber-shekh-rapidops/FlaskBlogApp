@@ -1,0 +1,16 @@
+{%extends 'main/base.html'%}
+
+{%block main%}
+{%include 'main/flash_messages.html'%}
+<section>
+    <h3>login</h3>
+    <form action="" method='POST'>
+        {{form.hidden_tag()}}
+        {{form.email.label}}
+        {{form.email()}}
+        {{form.password.label}}
+        {{form.password()}}
+        {{form.submit()}}
+    </form>
+</section>
+{%endblock%}

@@ -1,0 +1,34 @@
+{%extends 'main/base.html'%}
+
+{%block main%}
+<section>
+    <h3>signup</h3>
+    <form action="" method='POST'>
+        {{form.hidden_tag()}}
+        {{form.email.label}}
+        {{form.email()}} <br>
+        {{form.fname.label}}
+        {{form.fname()}} 
+        {{form.lname.label}}
+        {{form.lname()}} <br>
+        {{form.dob.label}}
+        {{form.dob()}} <br>
+        {{form.mobile.label}}
+        {{form.mobile()}} <br>
+        {{form.gender.label}}
+        {{form.gender()}} <br>
+        {{form.password.label}}
+        {{form.password()}}
+        {{form.cpassword.label}}
+        {{form.cpassword()}} <br>
+        {{form.submit()}} <br>
+
+        {%for error in form.email.errors%}
+            <p>{{error}}</p>
+        {%endfor%}
+        {%for error in form.mobile.errors%}
+            <p>{{error}}</p>
+        {%endfor%}
+    </form>
+</section>
+{%endblock%}

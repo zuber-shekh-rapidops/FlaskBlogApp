@@ -1,0 +1,38 @@
+{%extends 'main/base.html'%}
+
+{%block main%}
+{%include 'main/flash_messages.html'%}
+<section>
+    <h2>Welcome {{current_user.username}}</h2>
+</section>
+<section>
+    <h2>user information</h2>
+    <hr>
+    <ul>
+        <li>{{current_user.username}}</li>
+        <li>{{current_user.email}}</li>
+        <li>{{current_user.first_name}} {{current_user.last_name}}</li>
+        <li>{{current_user.dob.strftime('%d-%m-%Y')}}</li>
+        <li>{{current_user.mobile_no}}</li>
+        <li>{{current_user.gender}}</li>
+        <li><a href="{{url_for('user.update_profile',id=current_user.id)}}">Edit Profile &raquo;</a></li>
+    </ul>
+</section>
+<section>
+    <section>
+        <hr>
+        <h3>your blogs</h3>
+        <hr>
+        {%if current_user.blogs%}
+            <ul>
+                {%for blog in current_user.blogs%}
+                    <li><a href="{{url_for('blog.view_blog',id=blog.id)}}">{{blog.name}}</a></li>
+                {%endfor%}
+            </ul>
+        {%else%}
+            <p>no blog created by you</p>
+        {%endif%}
+        <a href="{{url_for('blog.create_blog')}}">create new blog &raquo;</a>
+    </section>
+</section>
+{%endblock%}

@@ -1,0 +1,17 @@
+{%extends 'main/base.html'%}
+
+{%block main%}
+<section>
+    <h2>create new blog</h2>
+    <form action="" method="POST">
+        {{form.hidden_tag()}}
+        {{form.name.label}}
+        {{form.name()}}
+        {{form.submit()}}
+
+        {%for error in form.name.errors%}
+            <p>{{error}}</p>
+        {%endfor%}
+    </form>
+</section>
+{%endblock%}

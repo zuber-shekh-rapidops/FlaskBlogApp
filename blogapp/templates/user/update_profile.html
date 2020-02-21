@@ -1,0 +1,22 @@
+{%extends 'main/base.html'%}
+
+{%block main%}
+<section>
+    <h3>update profile</h3>
+    <form action="" method='POST'>
+        {{form.hidden_tag()}}
+        
+        {{form.fname.label}}
+        {{form.fname()}} 
+        {{form.lname.label}}
+        {{form.lname()}} <br>
+        {{form.dob.label}}
+        {{form.dob()}} <br>
+        {{form.gender.label}}
+        {{form.gender()}} <br>
+        
+        {{form.submit()}} <br>
+
+    </form>
+</section>
+{%endblock%}

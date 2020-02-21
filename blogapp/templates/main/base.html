@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Blogapp</title>
+</head>
+<body>
+    <!-- ***************************************************HEADER***********************************************  -->
+    <header>
+        <h1>blogapp</h1>
+    </header>
+    <!-- ***************************************************NAVIGATION***********************************************  -->
+    <nav>
+        <ul>
+            <li><a href="{{url_for('main.index')}}">home</a></li>
+            <li><a href="{{url_for('blog.blogs')}}">blogs</a></li>
+            {%if current_user.is_authenticated %}
+                <li><a href="{{url_for('user.home')}}">account</a></li>
+                <li><a href="{{url_for('user.logout')}}">{{current_user.username}} logout</a></li>
+            {%else%}
+                <li><a href="{{url_for('user.signup')}}">signup</a></li>
+                <li><a href="{{url_for('user.login')}}">login</a></li>
+            {%endif%}
+                
+        </ul>
+    </nav>
+    <!-- ***************************************************MAIN***********************************************  -->
+    <main>
+        {%block main%}
+    
+        {%endblock%}
+    </main>
+    <!-- ***************************************************FOOTER***********************************************  -->
+    <footer>
+        <!-- ***************************************************COPYRIGHTS***********************************************  -->
+        <section>
+            <h3>copyright &copy; 2020</h3>
+            <p>all right are reserved by zuber shekh</p>
+        </section>
+    </footer>
+</body>
+</html>

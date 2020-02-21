@@ -1,0 +1,18 @@
+{%extends 'main/base.html'%}
+
+{%block main%}
+{%include 'main/flash_messages.html'%}
+<section>
+    <h2>post</h2>
+    <hr>
+    <ul>
+        <li>{{post.title}}</li>
+        <li>{{post.content}}</li>
+        <li>{{post.created_on.strftime('%d-%m-%Y')}}</li>
+        <li>{{post.blog}}</li>
+        <li>{{post.blog.creator.username}}</li>
+        <li><a href="{{url_for('post.update_post',id=post.id)}}">edit</a></li>
+        <li><a href="#">delete</a></li>
+    </ul>
+</section>
+{%endblock%}

@@ -1,0 +1,9 @@
+{%if get_flashed_messages()%}
+<section>
+    <ul>
+        {%for message in get_flashed_messages()%}
+            <li>{{message}}</li>
+        {%endfor%}
+    </ul>
+</section>
+{%endif%}
