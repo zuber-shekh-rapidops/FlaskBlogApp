@@ -12,7 +12,7 @@
         <li>{{post.blog}}</li>
         <li>{{post.blog.creator.username}}</li>
         <li><a href="{{url_for('post.update_post',id=post.id)}}">edit</a></li>
-        <li><a href="#">delete</a></li>
+        <li><a href="{{url_for('post.delete_post',id=post.id)}}">delete</a></li>
     </ul>
 </section>
 {%endblock%}

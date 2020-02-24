@@ -43,3 +43,14 @@ def update_post(id):
         return redirect(url_for('post.view_post',id=id))
         
     return render_template('post/create_post.html',form=form,form_title='update post')
+
+@post.route('/delete/<int:id>')
+@login_required
+def delete_post(id):
+    post=PostModel.query.get_or_404(id)
+    if post:
+        db.session.delete(post)
+        db.session.commit()
+        flash('post deleted successfully!')
+        return redirect(url_for('user.home'))
+    
