@@ -1,8 +1,11 @@
 from flask import Blueprint,render_template,redirect,url_for,flash,request
-from blogapp import db
+from blogapp import db,app
 from blogapp.user.forms import UserLoginForm,UserSignupForm,UpdateUserProfileForm
 from blogapp.user.models import UserModel
 from flask_login import login_user,current_user,logout_user,login_required
+from PIL import Image
+import secrets
+import os
 
 user=Blueprint('user',__name__,url_prefix='/user')
 
@@ -48,6 +51,18 @@ def signup():
 def home():
     return render_template('user/home.html')
 
+# HOW TO SAVE PROFILE PICTURE 
+def save_picture(image_file):
+    output_size=(200,200)
+    random_hex=secrets.token_hex(8)
+    i=Image.open(image_file)
+    i.thumbnail(output_size)
+    _,file_ext=os.path.splitext(image_file.filename)
+    picture_file=random_hex+file_ext
+    picture_path=os.path.join(app.root_path,'static/images/profile_pics',picture_file)
+    i.save(picture_path)
+    return picture_file
+
 @user.route('/update/<int:id>',methods=['GET','POST'])
 @login_required
 def update_profile(id):
@@ -58,11 +73,20 @@ def update_profile(id):
         form.lname.data=user.last_name
         form.gender.data=user.gender
         form.dob.data=user.dob
+        form.mobile.data=user.mobile_no
+        form.email.data=user.email
+        form.profile_pic.data=user.profile_pic
+        profile_name=user.profile_pic
 
     if form.validate_on_submit():
+        if form.profile_pic.data:
+            image=save_picture(form.profile_pic.data)
+            user.profile_pic=image
         user.first_name=form.fname.data
         user.last_name=form.lname.data
         user.gender=form.gender.data
+        user.mobile_no=form.mobile.data
+        user.email=form.email.data
         db.session.commit()
         flash('your prfile is updated!')
         return redirect(url_for('user.home'))

@@ -1,11 +1,17 @@
 {%extends 'main/base.html'%}
 
 {%block main%}
+{{profile_name}}
 <section>
     <h3>update profile</h3>
-    <form action="" method='POST'>
+    <form action="" method='POST' enctype="multipart/form-data">
         {{form.hidden_tag()}}
-        
+        {{form.email.label}}
+        {{form.email()}}
+        {{form.mobile.label}}
+        {{form.mobile()}}
+        {{form.profile_pic.label}}
+        {{form.profile_pic()}}
         {{form.fname.label}}
         {{form.fname()}} 
         {{form.lname.label}}
@@ -15,6 +21,15 @@
         {{form.gender.label}}
         {{form.gender()}} <br>
         
+        {%for error in form.profile_pic.errors%}
+            <p>{{error}}</p>
+        {%endfor%}
+        {%for error in form.mobile.errors%}
+            <p>{{error}}</p>
+        {%endfor%}
+        {%for error in form.email.errors%}
+            <p>{{error}}</p>
+        {%endfor%}
         {{form.submit()}} <br>
 
     </form>

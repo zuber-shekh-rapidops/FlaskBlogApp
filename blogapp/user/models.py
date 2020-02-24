@@ -19,9 +19,10 @@ class UserModel(db.Model,UserMixin):
     dob=db.Column(db.DateTime,nullable=False)
     gender=db.Column(db.String,nullable=False)
     mobile_no=db.Column(db.String(10),unique=True,nullable=False)
+    profile_pic=db.Column(db.String,default='default_profile.jpg')
     blogs=db.relationship('BlogModel',backref='creator',lazy=True)
     
-    def __init__(self,email,password,first_name,last_name,mobile_no,gender,dob):
+    def __init__(self,email,password,first_name,last_name,mobile_no,gender,dob,profile_pic):
         self.username=str(email).split('@')[0]
         self.email=email
         self.password=bcrypt.generate_password_hash(password).decode('utf-8')
@@ -30,6 +31,7 @@ class UserModel(db.Model,UserMixin):
         self.mobile_no=mobile_no
         self.gender=gender
         self.dob=dob
+        self.profile_pic=profile_pic
 
     def __repr__(self):
         return f"Hello I am {self.username}"

@@ -1,8 +1,10 @@
 from flask_wtf import FlaskForm
+from flask_wtf.file import FileField,FileAllowed
 from wtforms.fields import SubmitField,StringField,PasswordField,RadioField
 from wtforms.fields.html5 import DateField,EmailField,IntegerField
 from wtforms.validators import DataRequired,Email,EqualTo,Length,ValidationError
 from blogapp.user.models import UserModel
+from flask_login import current_user
 
 
 # *********************************************FORMS************************************************
@@ -35,13 +37,23 @@ class UserSignupForm(FlaskForm):
 
 
 class UpdateUserProfileForm(FlaskForm):
+    email=StringField('email',validators=[DataRequired(),Email()])
+    profile_pic=FileField('upload profile pic',validators=[FileAllowed(['jpeg','jpg'])])
     fname=StringField('first name',validators=[DataRequired()])
     lname=StringField('last name',validators=[DataRequired()])
     dob=DateField('date of birth',validators=[DataRequired()])
+    mobile=IntegerField('mobile',validators=[DataRequired()])
     gender=RadioField('gender',choices=[('male','male'),('female','female'),('other','other')],coerce=str,validators=[DataRequired()])
     submit=SubmitField('update')
 
     def validate_mobile(self,mobile):
-        user=UserModel.query.filter_by(mobile_no=mobile.data).first()
-        if user:
-            raise ValidationError("mobile is already exists")
+        if current_user.mobile_no!=mobile.data:
+            user=UserModel.query.filter_by(mobile_no=mobile.data).first()
+            if user and user.mobile_no==current_user.mobile_no:
+                raise ValidationError("mobile is already exists")
+
+    def validate_email(self,email):
+        if current_user.email!=email.data:
+            user=UserModel.query.filter_by(email=email.data).first()
+            if user and user.email==email.data:
+                raise ValidationError("email is already exists")
