@@ -2,17 +2,24 @@
 
 {%block main%}
 {%include 'main/flash_messages.html'%}
-<section>
-    <h2>post</h2>
-    <hr>
-    <ul>
-        <li>{{post.title}}</li>
-        <li>{{post.content}}</li>
-        <li>{{post.created_on.strftime('%d-%m-%Y')}}</li>
-        <li>{{post.blog}}</li>
-        <li>{{post.blog.creator.username}}</li>
-        <li><a href="{{url_for('post.update_post',id=post.id)}}">edit</a></li>
-        <li><a href="{{url_for('post.delete_post',id=post.id)}}">delete</a></li>
-    </ul>
+<section class="container text-uppercase">
+    <!-- POST DETAILS SECTION -->
+    <div class="row">
+        <div class="col">
+            <h2>post</h2>
+            <hr>
+            <ul class="list-group">
+                <li class="list-group-item">title : {{post.title}}</li>
+                <li class="list-group-item">content : {{post.content}}</li>
+                <li class="list-group-item">created on : {{post.created_on.strftime('%d-%m-%Y')}}</li>
+                <li class="list-group-item">belongs to : {{post.blog}}</li>
+                <li class="list-group-item">created by : {{post.blog.creator.username}}</li>
+                <li class="list-group-item">
+                    <a class="btn btn-info px-3" href="{{url_for('post.update_post',id=post.id)}}">edit</a>
+                    <a class="btn btn-danger px-3" href="{{url_for('post.delete_post',id=post.id)}}">delete</a>
+                </li>
+            </ul>
+        </div>
+    </div>
 </section>
 {%endblock%}

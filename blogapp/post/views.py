@@ -21,7 +21,7 @@ def create_post(id):
         post=PostModel(title=form.title.data,content=form.content.data,blog_id=id)
         db.session.add(post)
         db.session.commit()
-        flash("post created successfully!")
+        flash("post created successfully!",'success')
         return redirect(url_for('blog.view_blog',id=id))
     return render_template('post/create_post.html',form=form,form_title='create new post')
 
@@ -39,7 +39,7 @@ def update_post(id):
         post.title=form.title.data
         post.content=form.content.data
         db.session.commit()
-        flash('post updated successfully!')
+        flash('post updated successfully!','success')
         return redirect(url_for('post.view_post',id=id))
         
     return render_template('post/create_post.html',form=form,form_title='update post')
@@ -51,6 +51,6 @@ def delete_post(id):
     if post:
         db.session.delete(post)
         db.session.commit()
-        flash('post deleted successfully!')
+        flash('post deleted successfully!','danger')
         return redirect(url_for('user.home'))
     

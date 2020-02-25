@@ -1,37 +1,71 @@
 {%extends 'main/base.html'%}
 
 {%block main%}
-{{profile_name}}
-<section>
-    <h3>update profile</h3>
-    <form action="" method='POST' enctype="multipart/form-data">
-        {{form.hidden_tag()}}
-        {{form.email.label}}
-        {{form.email()}}
-        {{form.mobile.label}}
-        {{form.mobile()}}
-        {{form.profile_pic.label}}
-        {{form.profile_pic()}}
-        {{form.fname.label}}
-        {{form.fname()}} 
-        {{form.lname.label}}
-        {{form.lname()}} <br>
-        {{form.dob.label}}
-        {{form.dob()}} <br>
-        {{form.gender.label}}
-        {{form.gender()}} <br>
-        
-        {%for error in form.profile_pic.errors%}
-            <p>{{error}}</p>
-        {%endfor%}
-        {%for error in form.mobile.errors%}
-            <p>{{error}}</p>
-        {%endfor%}
-        {%for error in form.email.errors%}
-            <p>{{error}}</p>
-        {%endfor%}
-        {{form.submit()}} <br>
+<section class="container text-uppercase">
+    <div class="row">
+        <div class="col">
+            <h3>update profile</h3>
+            <hr>
+            <form action="" method='POST' enctype="multipart/form-data">
+                <div class="form-group">
+                    {{form.hidden_tag()}}
+                    {{form.email.label(class='form-label')}}
+                    {{form.email(class='form-control')}}    
+                </div>
+                <div class="form-group">
+                    {{form.mobile.label(class='form-label')}}
+                    {{form.mobile(class='form-control')}}    
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            {{form.fname.label(class='form-label')}}
+                            {{form.fname(class='form-control')}} 
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            {{form.lname.label(class='form-label')}}
+                            {{form.lname(class='form-control')}}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            {{form.dob.label(class='form-label')}}
+                            {{form.dob(class='form-control')}}
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            {{form.profile_pic.label(class='form-label')}}
+                            {{form.profile_pic(class='form-control-file')}}    
+                        </div>
+                    </div>
+                </div>
+                
+                
+                <div class="form-group">
+                    {{form.gender.label(class='form-label')}}
+                    {{form.gender(class='form-control-radio')}}
+                </div>
+                <div class="form-group">
+                    {{form.submit(class='btn btn-primary btn-block text-uppercase')}} <br>
+                </div>
+                {%for error in form.profile_pic.errors%}
+                    <p>{{error}}</p>
+                {%endfor%}
+                {%for error in form.mobile.errors%}
+                    <p>{{error}}</p>
+                {%endfor%}
+                {%for error in form.email.errors%}
+                    <p>{{error}}</p>
+                {%endfor%}
+                
 
-    </form>
+            </form>
+        </div>
+    </div>
 </section>
 {%endblock%}

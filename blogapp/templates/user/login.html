@@ -2,15 +2,24 @@
 
 {%block main%}
 {%include 'main/flash_messages.html'%}
-<section>
-    <h3>login</h3>
+<section class="container text-uppercase">
+    <h3 class="text-center">login</h3>
+    <hr>
     <form action="" method='POST'>
         {{form.hidden_tag()}}
-        {{form.email.label}}
-        {{form.email()}}
-        {{form.password.label}}
-        {{form.password()}}
-        {{form.submit()}}
+        <div class="form-group">
+            {{form.email.label(class='form-label')}}
+            {{form.email(class='form-control')}}
+        </div>
+        <div class="form-group">
+            {{form.password.label(class='form-label')}}
+            {{form.password(class='form-control')}}
+        </div>
+        <div class="form-group">
+            {{form.submit(class='btn btn-primary btn-block text-uppercase')}}
+        </div>
+        
     </form>
+    
 </section>
 {%endblock%}

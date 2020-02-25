@@ -19,9 +19,9 @@ def login():
         user=UserModel.query.filter_by(email=form.email.data).first()
         if user and user.check_password(form.password.data):
             login_user(user)
-            flash('login successfully!')
+            flash('login successfully!','success')
             return redirect(url_for('user.home'))
-        flash('invalid email or password')
+        flash('invalid email or password','danger')
         return redirect(url_for('user.login'))
     return render_template('user/login.html',form=form)
 
@@ -41,7 +41,7 @@ def signup():
         dob=form.dob.data)
         db.session.add(user)
         db.session.commit()
-        flash("Your account is created!")
+        flash("Your account is created!",'success')
         return redirect(url_for('user.login'))
 
     return render_template('user/signup.html',form=form)
@@ -88,7 +88,7 @@ def update_profile(id):
         user.mobile_no=form.mobile.data
         user.email=form.email.data
         db.session.commit()
-        flash('your prfile is updated!')
+        flash('your prfile is updated!','success')
         return redirect(url_for('user.home'))
     return render_template('user/update_profile.html',form=form)
 
@@ -96,5 +96,5 @@ def update_profile(id):
 @login_required
 def logout():
     logout_user()
-    flash("logout successfully")
+    flash("logout successfully",'success')
     return redirect(url_for('user.login'))

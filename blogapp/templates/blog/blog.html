@@ -3,27 +3,37 @@
 
 {%block main%}
 {% include 'main/flash_messages.html'%}
-<section>
-    <h2>{{blog.name}}</h2>
-    <hr>
-    <ul>
-        <li>{{blog.name}}</li>
-        <li>{{blog.creator.username}}</li>
-        <li>{{blog.date_of_creation.strftime('%d-%m-%Y')}}</li>
-        <li><a href="{{url_for('blog.change_blog_status',id=blog.id)}}">{%if blog.is_active%}deactivate{%else%}activate{%endif%}</a></li>
-        <li><a href="{{url_for('blog.update_blog',id=blog.id)}}">edit</a> | <a href="{{url_for('blog.delete_blog',id=blog.id)}}">delete</a></li>
-        <h3>posts</h3>
+<section class="container text-uppercase">
+    
+    <div class="row">
         
-        {%if blog.posts%}
-            <ul>
-                {%for post in blog.posts%}
-                    <li><a href="{{url_for('post.view_post',id=post.id)}}">{{post.title}}</a></li>
-                {%endfor%}
+        <div class="col">
+            <!-- BLOG DETAILS SECTION -->
+            <h2>{{blog.name}}</h2>
+            <hr>
+            <ul class="list-group">
+                <li class="list-group-item">blog name : {{blog.name}}</li>
+                <li class="list-group-item">creator name : {{blog.creator.username}}</li>
+                <li class="list-group-item">created on : {{blog.date_of_creation.strftime('%d-%m-%Y')}}</li>
+                <li class="list-group-item">status : <a class="btn btn-{% if blog.is_active %}danger{%else%}success{%endif%}" href="{{url_for('blog.change_blog_status',id=blog.id)}}">{%if blog.is_active%}deactivate{%else%}activate{%endif%}</a></li>
+                <li class="list-group-item"><a class="btn btn-primary px-3" href="{{url_for('blog.update_blog',id=blog.id)}}">edit</a> <a class="btn btn-danger px-3" href="{{url_for('blog.delete_blog',id=blog.id)}}">delete</a></li>
+                <hr>
             </ul>
-        {%else%}
-            <p>no post added yet!</p>
-        {%endif%}
-        <a href="{{url_for('post.create_post',id=blog.id)}}">create new post &raquo;</a>
-    </ul>
+            <!-- POSTS SECTION -->
+            <h3>posts</h3>
+            {%if blog.posts%}
+                <ul class="list-group my-3">
+                    {%for post in blog.posts%}
+                        <li class="list-group-item"><a href="{{url_for('post.view_post',id=post.id)}}">{{post.title}}</a></li>
+                    {%endfor%}
+                </ul>
+            {%else%}
+                <div class="alert alert-info">no post avaliable</div>        
+            {%endif%}
+            <a class="btn btn-info" href="{{url_for('post.create_post',id=blog.id)}}">create new post &raquo;</a>
+        </div>
+    </div>
+    <hr>
+    
 </section>
 {%endblock%}

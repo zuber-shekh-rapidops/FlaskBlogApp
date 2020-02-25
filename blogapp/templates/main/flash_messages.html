@@ -1,9 +1,9 @@
 {%if get_flashed_messages()%}
-<section>
-    <ul>
-        {%for message in get_flashed_messages()%}
-            <li>{{message}}</li>
-        {%endfor%}
-    </ul>
+<section class="container">
+        {%with messages = get_flashed_messages(with_categories=true) %}
+            {%for category,message in messages%}
+                <div class="alert alert-{{category}} text-uppercase">{{message}}</div>
+            {%endfor%}
+        {%endwith%}
 </section>
 {%endif%}

@@ -1,17 +1,25 @@
 {%extends 'main/base.html'%}
 
 {%block main%}
-<section>
-    <h2>create new blog</h2>
-    <form action="" method="POST">
-        {{form.hidden_tag()}}
-        {{form.name.label}}
-        {{form.name()}}
-        {{form.submit()}}
-
-        {%for error in form.name.errors%}
-            <p>{{error}}</p>
-        {%endfor%}
-    </form>
+<section class="container text-uppercase">
+    <div class="row">
+        <div class="col">
+            <h2>{{form_legend}}</h2>
+            <hr>
+            <form action="" method="POST">
+                <div class="form-group">
+                    {{form.hidden_tag()}}
+                    {{form.name.label(class='form-label')}}
+                    {{form.name(class='form-control')}}
+                </div>
+                <div class="form-group">
+                    {{form.submit(class='btn btn-info btn-block text-uppercase')}}
+                </div>
+                {%for error in form.name.errors%}
+                    <p>{{error}}</p>
+                {%endfor%}
+            </form>
+        </div>
+    </div>
 </section>
 {%endblock%}

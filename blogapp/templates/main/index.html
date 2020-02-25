@@ -2,47 +2,63 @@
 
 
 {%block main%}
-<section>
-    <h2>Welcome to blog app</h2>
+<!-- WELCOME MESSAGE FOR INDEX PAGE -->
+<section class="container text-uppercase text-center">
+    <div class="jumbotron bg-info text-light">
+        <h2 class="display-4">Welcome to blog app</h2>
+        <!-- <hr> -->
+        <p class="lead">share your thoughts and ideas here on blogapp</p>
+    </div>
+    
 </section>
-<section>
-    <section>
-        <h3>if you an account then login</h3>
-        <a href="{{url_for('user.login')}}">login</a>
-    </section>
-    <section>
-        <h3>if you don't have an account then sign up</h3>
-        <a href="{{url_for('user.signup')}}">signup</a>
-    </section>
+<!-- LOGIN AND SIGNUP SECTION -->
+<section class="container text-uppercase">
+    <div class="row text-center bg-dark rounded my-4">
+        <div class="col-md-6 p-5 text-light">
+            <h5>if you an account then login</h5>
+            <a class="btn btn-primary px-3" href="{{url_for('user.login')}}">login &raquo;</a>
+        </div>
+        <div class="col-md-6 p-5 text-light ">
+            <h5>if you don't have an account then sign up</h5>
+            <a class="btn btn-info px-3" href="{{url_for('user.signup')}}">signup &raquo;</a>
+        </div>
+    </div>
 </section>
-<section>
-    <h3>list of top 10 blogs</h3>
-    <ul>
-        <li><a href="#">blog 1</a></li>
-        <li><a href="#">blog 2</a></li>
-        <li><a href="#">blog 3</a></li>
-        <li><a href="#">blog 4</a></li>
-        <li><a href="#">blog 5</a></li>
-        <li><a href="#">blog 6</a></li>
-        <li><a href="#">blog 7</a></li>
-        <li><a href="#">blog 8</a></li>
-        <li><a href="#">blog 9</a></li>
-        <li><a href="#">blog 10</a></li>
-    </ul>
-</section>
-<section>
-    <h3>list of top 10 posts</h3>
-    <ul>
-        <li><a href="#">post 1</a></li>
-        <li><a href="#">post 2</a></li>
-        <li><a href="#">post 3</a></li>
-        <li><a href="#">post 4</a></li>
-        <li><a href="#">post 5</a></li>
-        <li><a href="#">post 6</a></li>
-        <li><a href="#">post 7</a></li>
-        <li><a href="#">post 8</a></li>
-        <li><a href="#">post 9</a></li>
-        <li><a href="#">post 10</a></li>
-    </ul>
+<!-- BLOGS AND POST SECTION -->
+<section class="container text-uppercase">
+    <!-- LIST OF TOP 10 BLOGS -->
+    <div class="row">
+        <div class="col-md-6">
+            <h3>list of top 10 blogs</h3>
+            <ul>
+                <li><a href="#">blog 1</a></li>
+                <li><a href="#">blog 2</a></li>
+                <li><a href="#">blog 3</a></li>
+                <li><a href="#">blog 4</a></li>
+                <li><a href="#">blog 5</a></li>
+                <li><a href="#">blog 6</a></li>
+                <li><a href="#">blog 7</a></li>
+                <li><a href="#">blog 8</a></li>
+                <li><a href="#">blog 9</a></li>
+                <li><a href="#">blog 10</a></li>
+            </ul>
+        </div>
+        <!-- LIST OF TOP 10 POSTS -->
+        <div class="col-md-6">
+            <h3>list of top 10 posts</h3>
+            <ul>
+                <li><a href="#">post 1</a></li>
+                <li><a href="#">post 2</a></li>
+                <li><a href="#">post 3</a></li>
+                <li><a href="#">post 4</a></li>
+                <li><a href="#">post 5</a></li>
+                <li><a href="#">post 6</a></li>
+                <li><a href="#">post 7</a></li>
+                <li><a href="#">post 8</a></li>
+                <li><a href="#">post 9</a></li>
+                <li><a href="#">post 10</a></li>
+            </ul>
+        </div>
+    </div>
 </section>
 {%endblock%}

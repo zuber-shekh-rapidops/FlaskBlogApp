@@ -24,15 +24,16 @@ def view_blog(id):
 @blog.route('/create',methods=['GET','POST'])
 @login_required
 def create_blog():
+    form_legend='create new blog'
     form=CreateBlogForm()
     if form.validate_on_submit():
         blog=BlogModel(name=form.name.data,creator_id=current_user.id)
         db.session.add(blog)
         db.session.commit()
-        flash('blog created successfully')
+        flash('blog created successfully','success')
         return redirect(url_for('user.home'))
 
-    return render_template('blog/create_blog.html',form=form)
+    return render_template('blog/create_blog.html',form=form,form_legend=form_legend)
 
 @blog.route('/status/<int:id>')
 @login_required
@@ -43,6 +44,7 @@ def change_blog_status(id):
     else:
         blog.is_active=True
     db.session.commit()
+    flash('blog status changed successfully','success')
     return redirect(url_for('blog.view_blog',id=blog.id))
 
 
@@ -54,13 +56,14 @@ def update_blog(id):
     if request.method=='GET':
         form.name.data=blog.name
         form.submit.label.text='update'
-
+        form_legend='update blog'
     if form.validate_on_submit():
         blog.name=form.name.data
         db.session.commit()
+        flash('blog updated successfully','success')
         return redirect(url_for('blog.view_blog',id=id))
 
-    return render_template('blog/create_blog.html',form=form)
+    return render_template('blog/create_blog.html',form=form,form_legend=form_legend)
 
 
 @blog.route('/delete/<int:id>',methods=['GET','POST'])
@@ -71,4 +74,5 @@ def delete_blog(id):
     if blog:
         db.session.delete(blog)
         db.session.commit()
+        flash('blog deleted successfully','danger')
         return redirect(url_for('user.home'))
