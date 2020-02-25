@@ -25,11 +25,13 @@ from blogapp.main.views import main
 from blogapp.user.views import user
 from blogapp.post.views import post
 from blogapp.blog.views import blog
+from blogapp.errors.views import error
 
 app.register_blueprint(main)
 app.register_blueprint(user)
 app.register_blueprint(post)
 app.register_blueprint(blog)
+app.register_blueprint(error)
 
 # ****************************************************VIEWS/ROUTES****************************************************
 from blogapp.main import views

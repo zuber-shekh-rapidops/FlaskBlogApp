@@ -1,4 +1,4 @@
-from flask import Blueprint,render_template,flash,redirect,url_for,request
+from flask import Blueprint,render_template,flash,redirect,url_for,request,abort
 from blogapp import db
 from blogapp.blog.models import BlogModel
 from blogapp.blog.forms import CreateBlogForm
@@ -17,6 +17,8 @@ def blogs():
 @login_required
 def view_blog(id):
     blog=BlogModel.query.get_or_404(id)
+    if current_user.username!=blog.creator.username:
+        abort(403)
     return render_template('blog/blog.html',blog=blog)
 
 @blog.route('/create',methods=['GET','POST'])
