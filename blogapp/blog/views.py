@@ -10,6 +10,8 @@ blog=Blueprint('blog',__name__,url_prefix='/blog')
 
 @blog.route('/all')
 def blogs():
+    if not current_user.is_authenticated:
+        return redirect(url_for('user.login'))
     blogs=BlogModel.query.filter_by(is_active=True).order_by(BlogModel.date_of_creation.desc()).all()
     return render_template('blog/blogs.html',blogs=blogs)
 

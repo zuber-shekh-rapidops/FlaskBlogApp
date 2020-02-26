@@ -20,7 +20,7 @@ def login():
         if user and user.check_password(form.password.data):
             login_user(user)
             flash('login successfully!','success')
-            return redirect(url_for('user.home'))
+            return redirect(url_for('user.home'))   
         flash('invalid email or password','danger')
         return redirect(url_for('user.login'))
     return render_template('user/login.html',form=form)
@@ -98,3 +98,9 @@ def logout():
     logout_user()
     flash("logout successfully",'success')
     return redirect(url_for('user.login'))
+
+
+@user.route('/account')
+@login_required
+def account():
+    return "accoutn page"

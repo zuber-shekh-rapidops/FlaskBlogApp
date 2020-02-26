@@ -5,6 +5,7 @@ from wtforms.fields.html5 import DateField,EmailField,IntegerField
 from wtforms.validators import DataRequired,Email,EqualTo,Length,ValidationError
 from blogapp.user.models import UserModel
 from flask_login import current_user
+from operator import and_
 
 
 # *********************************************FORMS************************************************
@@ -47,13 +48,15 @@ class UpdateUserProfileForm(FlaskForm):
     submit=SubmitField('update')
 
     def validate_mobile(self,mobile):
-        if current_user.mobile_no!=mobile.data:
+        if current_user.mobile_no != str(mobile.data):
             user=UserModel.query.filter_by(mobile_no=mobile.data).first()
-            if user and user.mobile_no==current_user.mobile_no:
+            if user:
                 raise ValidationError("mobile is already exists")
 
     def validate_email(self,email):
         if current_user.email!=email.data:
+            print(type(email.data))
+            print(type(current_user.email))
             user=UserModel.query.filter_by(email=email.data).first()
             if user and user.email==email.data:
                 raise ValidationError("email is already exists")
